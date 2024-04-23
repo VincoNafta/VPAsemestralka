@@ -3,25 +3,38 @@ package sk.vinconafta.vpasem.Models;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import sk.vinconafta.vpasem.Repos.EventRepo;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Events")
 public class Event  {
-
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private Long id;
     @Column(nullable = false)
     private String name;
+    private LocalDateTime eventDate;
+    private LocalDateTime endTime;
     private boolean aktualneBezi;
-    @jakarta.persistence.Id
-    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
+    public LocalDateTime getEventDate() {
+        return eventDate;
     }
 
-    public Long getId() {
-        return id;
+    public void setEventDate(LocalDateTime eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public String getName() {
@@ -38,5 +51,13 @@ public class Event  {
 
     public void setAktualneBezi(boolean aktualneBezi) {
         this.aktualneBezi = aktualneBezi;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
