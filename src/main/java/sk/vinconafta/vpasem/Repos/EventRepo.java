@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface EventRepo extends JpaRepository<Event, Long> {
 
-    @Query("SELECT e FROM Event e WHERE e.endTime IS NULL ")
+    @Query("SELECT e FROM Event e WHERE e.aktualneBezi = true")
     public List<Event> getActiveEvents();
 }

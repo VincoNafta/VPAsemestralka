@@ -1,9 +1,6 @@
 package sk.vinconafta.vpasem.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "students")
 public class User {
@@ -13,7 +10,9 @@ public class User {
     private Long id;
     private String meno;
     private String priezvisko;
-    private String username;
+    @OneToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
 
     public void setId(Long id) {
         this.id = id;
@@ -39,12 +38,11 @@ public class User {
         this.priezvisko = priezvisko;
     }
 
-    public String getUsername() {
-        return username;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }

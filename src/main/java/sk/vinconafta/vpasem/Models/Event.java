@@ -19,10 +19,19 @@ public class Event  {
     private String name;
     private LocalDateTime eventDate;
     private LocalDateTime endTime;
+    private String miestnost;
     private boolean aktualneBezi;
 
     public LocalDateTime getEventDate() {
         return eventDate;
+    }
+
+    public String getMiestnost() {
+        return miestnost;
+    }
+
+    public void setMiestnost(String miestnost) {
+        this.miestnost = miestnost;
     }
 
     public void setEventDate(LocalDateTime eventDate) {
