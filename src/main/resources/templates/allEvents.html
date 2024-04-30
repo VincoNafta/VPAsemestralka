@@ -16,19 +16,24 @@
         <br>V tomto zozname môžeme vidieť aktuálne akcie.
         <br>V prípade, že vašu akciu nevidíte a prebieha kontaktujte technickú podporu
     </p>
-    <div th:if="${activeEvents.size() > 0}">
+    <div th:if="${events.size() > 0}">
         <table class="table">
-        <th scope="col">Názov udalosti</th>
-        <th scope="col">Miestnosť</th>
-        <tr th:each="event: ${activeEvents}" th:object="${event}">
+            <th scope="col">Názov udalosti</th>
+            <th scope="col">Miestnosť</th>
+            <th></th>
+            <th></th>
+            <tr th:each="event: ${events}" th:object="${event}">
 
-            <td th:text="${event.name}"/>
-            <td th:text="${event.miestnost}"/>
-        </tr>
+                <td th:text="${event.name}"/>
+                <td th:text="${event.miestnost}"/>
+                <td th:if="${event.aktualneBezi == true}"><button class="btn btn-danger">x</button></td>
+                <td th:if="${event.aktualneBezi == false}"><button class="btn btn-success">x</button></td>
+                <td><button class="btn btn-info">i</button></td>
+            </tr>
 
-    </table>
+        </table>
     </div>
-    <div th:if="${activeEvents.size() == 0}">
+    <div th:if="${events.size() == 0}">
         <p>
             <b>Momentálne neprebieha žiadna udalosť</b>
         </p>

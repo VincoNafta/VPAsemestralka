@@ -24,7 +24,7 @@ public class MainController {
 
     @GetMapping("/events")
     public String events(Model model) {
-        List<Event> activeEvents = eventRepo.getActiveEvents();
+        List<Event> activeEvents = eventRepo.getActivePublicEvents();
         model.addAttribute("activeEvents", activeEvents);
         return "activeEvents";
     }

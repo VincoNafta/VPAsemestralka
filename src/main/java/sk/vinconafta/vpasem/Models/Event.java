@@ -22,6 +22,16 @@ public class Event  {
     private String miestnost;
     private boolean aktualneBezi;
 
+    public boolean isVerejny() {
+        return verejny;
+    }
+
+    public void setVerejny(boolean verejny) {
+        this.verejny = verejny;
+    }
+
+    private boolean verejny;
+
     public LocalDateTime getEventDate() {
         return eventDate;
     }

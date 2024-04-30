@@ -36,6 +36,14 @@ public class EventController {
         return "index";
     }
 
+    @GetMapping("/eventsEditor")
+    public String getEvents(Model model) {
+        model.addAttribute("events", eventRepo.findAll());
+        return "allEvents";
+    }
+
+
+
 
 
 }

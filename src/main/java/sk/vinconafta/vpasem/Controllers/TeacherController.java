@@ -25,6 +25,7 @@ public class TeacherController {
         model.addAttribute("list", teacherRepo.findAll());
         return "teachers";
     }
+
     @GetMapping("/register")
     public String newRegister(Model model) {
         model.addAttribute("teacher", new Teacher());
