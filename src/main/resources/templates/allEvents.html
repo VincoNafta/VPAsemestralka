@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +13,13 @@
 <div th:insert="Components/menu.html"></div>
 <div class="container">
     <h1>Aktívne udalosti</h1>
+    <br>
+    <a href="createEvent">
+        <button class="btn btn-success">Vytvoriť udalost</button></a>
+
     <p>
         <br>V tomto zozname môžeme vidieť aktuálne akcie.
-        <br>V prípade, že vašu akciu nevidíte a prebieha kontaktujte technickú podporu
+        <br>V prípade, že vašu akciu nevidíte a prebieha kontaktujte technickú podporu alebo autora akcie
     </p>
     <div th:if="${events.size() > 0}">
         <table class="table">
@@ -29,9 +32,9 @@
 
                 <td th:text="${event.name}"/>
                 <td th:text="${event.miestnost}"/>
-                <td th:if="${event.aktualneBezi == true}"><button class="btn btn-danger">x</button></td>
-                <td th:if="${event.aktualneBezi == false}"><button class="btn btn-success">x</button></td>
-                <td><button class="btn btn-info">i</button></td>
+                <td th:if="${event.aktualneBezi == true}"><a th:href="@{'changeActive/' + ${event.getId()}}"> <button class="btn btn-danger">x</button></a></td>
+                <td th:if="${event.aktualneBezi == false}"><a th:href="@{'changeActive/' +${event.getId()}}"><button class="btn btn-success">x</button></a></td>
+                <td><a th:href="@{'qr/showPeople/' + ${event.id}}"><button class="btn btn-info">i</button></a></td>
                 <td><a th:href="@{'gen_qr/' + ${event.id}}"><button class="btn btn-primary"><i class="bi bi-qr-code"></i></button></a></td>
             </tr>
 

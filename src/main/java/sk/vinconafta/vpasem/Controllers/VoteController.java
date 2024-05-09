@@ -12,7 +12,6 @@ import sk.vinconafta.vpasem.Models.User;
 import sk.vinconafta.vpasem.Repos.EventRepo;
 import sk.vinconafta.vpasem.Repos.UserRepo;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +20,9 @@ import java.util.Optional;
 public class VoteController {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
     @Autowired
-    EventRepo eventRepo;
+    private EventRepo eventRepo;
 
     @GetMapping("/writeUser")
     public String getNewUser(Model model) {
@@ -57,6 +56,17 @@ public class VoteController {
     public String zapis(User user) {
         userRepo.save(user);
         return "index";
+    }
+    @GetMapping("showPeople/{id}")
+    public String showPeoples(@PathVariable Long id, Model model) {
+        Optional<Event> e = eventRepo.findById(id);
+        if (e.isPresent()) {
+            List<User> usersOnEvent = userRepo.getAllOnEvent(id);
+            model.addAttribute("users", usersOnEvent);
+            model.addAttribute("event", e.get());
+            return "who";
+        }
+        return "redirect:/eventsEditor";
     }
 
 }

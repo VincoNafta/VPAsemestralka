@@ -1,11 +1,13 @@
 package sk.vinconafta.vpasem.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 import sk.vinconafta.vpasem.Models.Event;
 import sk.vinconafta.vpasem.Repos.EventRepo;
 
@@ -46,10 +48,31 @@ public class EventController {
                 model.addAttribute("event", selectedEvent.get());
                 return "show_qr";
             } else {
-                return "index";
+                return "redirect:/index";
             }
         }
         return  "index";
+    }
+
+    @GetMapping("/changepublicement/{id}")
+    public String changePublicists(@PathVariable Long id) {
+        Optional<Event> e = eventRepo.findById(id);
+        if (e.isPresent()) {
+            Event event = e.get();
+            event.setVerejny(!event.isVerejny());
+            eventRepo.save(event);
+        }
+        return "redirect:/eventsEditor";
+    }
+    @GetMapping("/changeActive/{id}")
+    public String changeActive(@PathVariable Long id) {
+        Optional<Event> e = eventRepo.findById(id);
+        if (e.isPresent()) {
+            Event event = e.get();
+            event.setAktualneBezi(!event.isAktualneBezi());
+            eventRepo.save(event);
+        }
+        return "redirect:/eventsEditor";
     }
 
     @GetMapping("/eventsEditor")

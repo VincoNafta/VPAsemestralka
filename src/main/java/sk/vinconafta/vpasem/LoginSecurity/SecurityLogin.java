@@ -43,7 +43,8 @@ public class SecurityLogin extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/eventsEditor", "/createEvent").authenticated()
+                .antMatchers("/eventsEditor", "/createEvent", "/qr/showPeoples/{id}",
+                        "/createEvent", "/saveNewEvent","/changeActive/{id}", "/changepublicement/{id}", "/gen_qr/{id}").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

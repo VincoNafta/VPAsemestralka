@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eprezencka - vytvorenie eventu</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:insert="Components/menu.html"></div>
+<div class="container">
+    <h1>Prezenčka</h1>
+    <p>
+        <br>V tomto zozname nájdete všetkých, ktorí sa zúčastnili udalosti <b><span th:text="${event.getName()}"></span></b>
+    </p>
+    <div th:if="${users.size() > 0}">
+        <br>Na tejto udalosti bolo <b><span th:text="${users.size()}"></span> </b>používateľov
+        <table class="table">
+            <thead>
+            <th scope="col">Meno</th>
+            <th scope="col">Priezvisko</th>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.meno}"></td>
+                <td th:text="${user.priezvisko}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${users.size() == 0}">
+        <p>
+            <b>Na tejto udalosti nebol nikto</b>
+        </p>
+    </div>
+</div>
+</body>
+</html>
