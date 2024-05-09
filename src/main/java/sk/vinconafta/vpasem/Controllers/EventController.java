@@ -12,6 +12,7 @@ import sk.vinconafta.vpasem.Repos.EventRepo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 public class EventController {
@@ -34,6 +35,21 @@ public class EventController {
         event.setEventDate(LocalDateTime.now());
         eventRepo.save(event);
         return "index";
+    }
+    @GetMapping("/gen_qr/{eventId}")
+    public String getGeneratedQR(@PathVariable Long eventId, Model model) {
+        Optional<Event> selectedEvent = eventRepo.findById(eventId);
+
+        // ...
+        if (selectedEvent.isPresent()) {
+            if (selectedEvent.get().isAktualneBezi()) {
+                model.addAttribute("event", selectedEvent.get());
+                return "show_qr";
+            } else {
+                return "index";
+            }
+        }
+        return  "index";
     }
 
     @GetMapping("/eventsEditor")

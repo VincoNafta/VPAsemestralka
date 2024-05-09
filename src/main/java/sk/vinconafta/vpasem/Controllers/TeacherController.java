@@ -1,6 +1,8 @@
 package sk.vinconafta.vpasem.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,9 @@ public class TeacherController {
     }
     @PostMapping("/register_user")
     public String reg_usr(Teacher teacher) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedpwd = encoder.encode(teacher.getPassword());
+        teacher.setPassword(hashedpwd);
         teacherRepo.save(teacher);
         return "register";
     }

@@ -1,19 +1,21 @@
 package sk.vinconafta.vpasem.Models;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "Meno")
+    @Column(name = "Meno" )
     private String meno;
     @Column(name = "Priezvisko")
     private String priezvisko;
     @Column(name = "Titul")
     private String titul;
-
+    @Column(name = "email", nullable = false, length = 64, unique = true)
+    public String email;
     public String getPassword() {
         return password;
     }
@@ -27,6 +29,7 @@ public class Teacher {
     public String getMeno() {
         return meno;
     }
+
 
     public void setMeno(String meno) {
         this.meno = meno;
@@ -54,5 +57,13 @@ public class Teacher {
 
     public Long getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

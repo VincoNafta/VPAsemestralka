@@ -9,4 +9,8 @@ import java.util.List;
 public interface TeacherRepo extends JpaRepository<Teacher, Long> {
     @Query("SELECT t FROM Teacher t WHERE t.titul IS NOT NULL")
     public List<Teacher> findWithoutTitul();
+
+    @Query("SELECT t FROM Teacher t WHERE t.email = ?1")
+    public Teacher findByEmail(String email);
 }
+

@@ -1,10 +1,8 @@
 package sk.vinconafta.vpasem.Models;
 
-import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import sk.vinconafta.vpasem.Repos.EventRepo;
 
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDateTime;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to CodeJava Home</title>
+    <!--    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="/qr.css">-->
+
+    <!--    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<div th:insert="Components/menu.html"></div>
+<div class="container">
+    <!--    <h1>Zapísanie sa do prezenčky</h1>-->
+    <!--    <br>Zapisujete sa na prednášku na tému-->
+    <div class="text-center">
+        <h1 th:text="${event.name}"> </h1>
+        <br>Nasnímaním QR kodu sa môžete prihlásiť na udalosť
+
+        <script type="text/javascript" src="/qr_generator/qrcode.js"></script>
+        <div id="placeHolder"></div>
+        <div id="eventid" th:text="${event.id}" class="d-none"></div>
+        <script>
+            var typeNumber = 0;
+            var errorCorrectionLevel = 'L';
+            var qr = qrcode(typeNumber, errorCorrectionLevel);
+            var servAdress = "http://"+window.location.hostname + ":" + window.location.port;
+            var eventIdJS = document.getElementById("eventid").innerHTML;
+            qr.addData(servAdress+ "/qr/dochadzka/"+eventIdJS);
+            qr.make();
+            document.getElementById('placeHolder').innerHTML = qr.createImgTag(15,0);
+        </script>
+
+        <!--    <h3><a th:href="@{/users}">List of Users</a></h3>-->
+        <!--    <h3><a th:href="@{/register}">Register</a></h3>-->
+        <!--    <h3><a th:href="@{/login}">Login</a></h3>-->
+    </div>
+    </div>
+
+</body>
+</html>

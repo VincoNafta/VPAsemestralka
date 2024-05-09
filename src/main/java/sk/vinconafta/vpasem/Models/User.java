@@ -1,6 +1,7 @@
 package sk.vinconafta.vpasem.Models;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity(name = "students")
 public class User {

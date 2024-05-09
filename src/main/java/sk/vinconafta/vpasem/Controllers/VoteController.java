@@ -30,8 +30,9 @@ public class VoteController {
         model.addAttribute("user", new User());
         return "zapis";
     }
+
     @GetMapping("/dochadzka/{eventId}")
-    public String findPet(@PathVariable Long eventId, Model model) {
+    public String getDochadzaPage(@PathVariable Long eventId, Model model) {
         Optional<Event> selectedEvent = eventRepo.findById(eventId);
 
         // ...
