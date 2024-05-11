@@ -32,13 +32,13 @@
         <br>
         <label>
             Váš titul
-            <select>
+            <select th:field="*{titul}">
 
-                <option></option>
-                <option>Bc.</option>
-                <option>Mgr.</option>
-                <option>Ing.</option>
-                <option>doc.</option>
+                <option th:value="null"></option>
+                <option th:value="'Bc.'">Bc.</option>
+                <option th:value="'Mgr.'">Mgr.</option>
+                <option th:value="'Ing.'">Ing.</option>
+                <option th:value="'doc.'">doc.</option>
 
             </select>
         </label>

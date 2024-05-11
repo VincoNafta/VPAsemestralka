@@ -1,10 +1,7 @@
 package sk.vinconafta.vpasem.Models;
 
 
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,10 +15,21 @@ public class Event  {
     private LocalDateTime eventDate;
     private LocalDateTime endTime;
     private String miestnost;
+    @OneToOne
+    @JoinColumn
+    private Teacher creator;
     private boolean aktualneBezi;
 
     public boolean isVerejny() {
         return verejny;
+    }
+
+    public Teacher getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Teacher creator) {
+        this.creator = creator;
     }
 
     public void setVerejny(boolean verejny) {

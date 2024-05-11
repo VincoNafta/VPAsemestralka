@@ -18,12 +18,19 @@ public class TeacherDetails implements UserDetails {
         this.teacher = teacher;
     }
 
+    public Teacher getTeacher() {
+        return this.teacher;
+    }
+
     @Override
     public String getPassword() {
         return teacher.getPassword();
     }
 
     public String getFullName() {
+        if (teacher.getTitul() != null) {
+            return teacher.getTitul() + " " + teacher.getMeno() + " " + teacher.getPriezvisko();
+        }
         return teacher.getMeno() + " " + teacher.getPriezvisko();
     }
 
