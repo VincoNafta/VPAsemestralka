@@ -1,3 +1,4 @@
+<script src="/bootstrap.min.js"></script>
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">E-Prezencka</a>
@@ -13,25 +14,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/events">Prebiehajuce akcie</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="/eventsEditor">Správca udalostí</a>
-                </li>
+<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+<!--                    <a class="nav-link" href="/eventsEditor">Správca udalostí</a>-->
+<!--                </li>-->
 
-<!--                <span sec:authorize="isAuthenticated()">Si prilaseny</span>-->
-                <!--        <li class="nav-item dropdown">-->
-                <!--        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                <!--        Dropdown-->
-                <!--        </a>-->
-                <!--        <ul class="dropdown-menu">-->
-                <!--        <li><a class="dropdown-item" href="#">Action</a></li>-->
-                <!--        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                <!--        <li><hr class="dropdown-divider"></li>-->
-                <!--        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                <!--        </ul>-->
-                <!--        </li>-->
-                <!--        <li class="nav-item">-->
-                <!--        <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
-                <!--        </li>-->
 
 
 
@@ -44,6 +30,7 @@
 
             <div sec:authorize="isAuthenticated() == true" class="dropdown">
                 <a class="nav-link" href="/logout">Odhlasiť sa</a>
+            </div>
             </div>
 
             <!--        <form class="d-flex" role="search">-->
