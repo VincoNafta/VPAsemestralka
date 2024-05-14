@@ -84,6 +84,17 @@ public class EventController {
     @GetMapping("/eventsEditor")
     public String getEvents(Model model, Authentication authentication) {
         TeacherDetails teacherDetails = (TeacherDetails) authentication.getPrincipal();
+        model.addAttribute("pageTitle", "Moje udalosti");
+        model.addAttribute("editable", true);
+        model.addAttribute("events", eventRepo.getMyEvents(teacherDetails.getTeacher().getId()));
+        return "allEvents";
+    }
+
+    @GetMapping("/TeacherEvents")
+    public String getAllEvents(Model model, Authentication authentication) {
+        TeacherDetails teacherDetails = (TeacherDetails) authentication.getPrincipal();
+        model.addAttribute("pageTitle", "Všetky udalosti");
+        model.addAttribute("editable", false);
         model.addAttribute("events", eventRepo.getMyEvents(teacherDetails.getTeacher().getId()));
         return "allEvents";
     }

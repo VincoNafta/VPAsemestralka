@@ -10,12 +10,14 @@
 <body>
 <div th:insert="Components/menu.html"></div>
 <div class="container">
-    <h1>Aktívne udalosti</h1>
+    <h1 th:text="${pageTitle}"></h1>
     <br>
-    <a href="createEvent">
+    <div th:if="${editable == true}">
+        <a href="createEvent">
         <button class="btn btn-success">Vytvoriť udalost</button></a>
 
-    <p>
+        <p>
+    </div>
         <br>V tomto zozname môžeme vidieť aktuálne akcie.
         <br>V prípade, že vašu akciu nevidíte a prebieha kontaktujte technickú podporu alebo autora akcie
     </p>
@@ -30,10 +32,10 @@
 
                 <td th:text="${event.name}"/>
                 <td th:text="${event.miestnost}"/>
-                <td th:if="${event.aktualneBezi == true}"><a th:href="@{'changeActive/' + ${event.getId()}}"> <button class="btn btn-danger">x</button></a></td>
-                <td th:if="${event.aktualneBezi == false}"><a th:href="@{'changeActive/' +${event.getId()}}"><button class="btn btn-success">x</button></a></td>
-                <td><a th:href="@{'qr/showPeople/' + ${event.id}}"><button class="btn btn-info">i</button></a></td>
-                <td><a th:href="@{'gen_qr/' + ${event.id}}"><button class="btn btn-primary"><i class="bi bi-qr-code"></i></button></a></td>
+                <td th:if="${event.aktualneBezi == true} and ${editable == true}"><a th:href="@{'changeActive/' + ${event.getId()}}"> <button class="btn btn-danger">x</button></a></td>
+                <td th:if="${event.aktualneBezi == false} and ${editable == true}"><a th:href="@{'changeActive/' +${event.getId()}}"><button class="btn btn-success">x</button></a></td>
+                <td th:if="${editable == true}"><a th:href="@{'qr/showPeople/' + ${event.id}}"><button class="btn btn-info">i</button></a></td>
+                <td th:if="${editable == true}"><a th:href="@{'gen_qr/' + ${event.id}}"><button class="btn btn-primary"><i class="bi bi-qr-code"></i></button></a></td>
             </tr>
 
         </table>
