@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eprezencka - Moje udalosti</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:insert="Components/menu.html"></div>
+<div class="container">
+    <h1>Zoznam prednášajúcich</h1>
+    <br>
+        <br>V tomto zozname môžeme vidieť zoznam prednášajúcich.
+        <br>V prípade že sa v zozname nevidíte odporučame zaregistrovať sa
+    </p>
+    <div th:if="${teachers.size() > 0}">
+        <table class="table">
+            <th scope="col">Meno</th>
+            <th scope="col">Priezvisko</th>
+            <th scope="col">Email</th>
+
+            <tr th:each="teacher: ${teachers}" th:object="${teachers}">
+
+                <td th:text="${teacher.meno}"/>
+                <td th:text="${teacher.priezvisko}"/>
+                <td th:text="${teacher.email}">
+            </tr>
+
+        </table>
+    </div>
+    <div th:if="${teachers.size() == 0}">
+        <p>
+            <b>Žiaden učiteľ zatiaľ nie je v systéme</b>
+        </p>
+
+    </div>
+
+    <!--    <h3><a th:href="@{/users}">List of Users</a></h3>-->
+    <!--    <h3><a th:href="@{/register}">Register</a></h3>-->
+    <!--    <h3><a th:href="@{/login}">Login</a></h3>-->
+</div>
+
+</body>
+</html>

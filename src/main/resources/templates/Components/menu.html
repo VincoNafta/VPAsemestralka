@@ -14,10 +14,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/events">Prebiehajuce akcie</a>
                 </li>
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                    <a class="nav-link" href="/eventsEditor">Správca udalostí</a>-->
-<!--                </li>-->
 
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/eventsEditor">Moje udalosti udalostí</a>
+                </li>
+
+                <li  sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/teachers">Prednasajuci</a>
+                </li>
 
 
 
